@@ -59,5 +59,5 @@ fn list_price(base: i32, tick: i32, count: i32, step: i32) {
     prices.append(&mut under);
     prices.push(base);
     prices.append(&mut upper);
-    print!("{:?}", prices);
+    println!("{:?}", prices);
 }
