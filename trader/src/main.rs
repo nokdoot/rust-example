@@ -1,5 +1,27 @@
+use std::env;
+
 fn main() {
-    list_price(58_600, 50, 10, 2);
+    let args: Vec<_> = env::args().take(4).collect();
+    let [program, base, tick, step] = match &*args {
+        [program, base, tick, step] => [program, base, tick, step],
+        _ => panic!(),
+    };
+
+    list_price(
+        match base.parse::<i32>() {
+            Ok(x) => x,
+            _ => panic!("base type is not i32")
+        },
+        match tick.parse::<i32>() {
+            Ok(x) => x,
+            _ => panic!("tick type is not i32")
+        },
+        10,
+        match step.parse::<i32>() {
+            Ok(x) => x,
+            _ => panic!("step type is not i32")
+        }
+    );
 }
 
 fn floor_by_tick(value: i32, tick: i32, math_fn: &str) -> i32 {
